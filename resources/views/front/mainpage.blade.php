@@ -83,6 +83,14 @@
             /* Adjust border color for the warning style */
         }
 
+        .btn-primary:active {
+            background-color: #234b91 !important;
+        }
+
+        .dropdown-item:active {
+            background-color: #234b91 !important;
+        }
+
         .carousel-item {
             background-position: center center !important;
             background-size: cover !important;
@@ -134,17 +142,54 @@
 
         }
 
+        @media screen and (max-width: 768px) {
+
+
+            .footer .aside-stretch-right {
+                background: transparent;
+            }
+
+            .footer .aside-stretch-right:after {
+                background: transparent;
+                display: none;
+            }
+
+            .aside-stretch-right {
+                background: transparent;
+            }
+
+            .aside-stretch-right:after {
+                background: transparent;
+                display: none;
+            }
+
+            /* .name{
+font-size:3vh !important;
+margin-top: 3vh !important;
+} */
+
+        }
+
         /**wait*/
-        .navbar {}
+
+
+
+
+
+
+
+
+
+        /* Styles */
+
+
 
         .uppernav span {
             font-size: 2.3vh !important;
 
         }
 
-        .linkname {
-            font-size: 2.2vh !important;
-        }
+
 
         .dropdown-item {
             font-size: 2.3vh !important;
@@ -157,6 +202,7 @@
 
         .aboutpanel a {
             font-size: 2vh !important;
+            font-weight: 600 !important;
         }
 
         ::placeholder {
@@ -359,25 +405,8 @@
 
 
 
-        @media screen and (max-width: 1200px) {
 
-            html,
-            body {
-                /* width: 100% !important;
-height: 100% !important; */
-                margin: 0px !important;
-                padding: 0px !important;
-                overflow-x: hidden !important;
-            }
 
-            /* .navbar-nav a{
-    padding: 0.2vh !important;
-    margin:0.2vh !important;
-    font-size:1vh !important;
-
-} */
-
-        }
 
 
         /* @media (max-width: 1658px) {
@@ -397,60 +426,10 @@ height: 100% !important; */
             margin-top: 3vh !important;
         }
        } */
-        @media screen and (max-width: 1024px) {
-
-            /* .navbar-nav a{
-        padding: 0.1vh !important;
-        margin:0.1vh !important;
-        font-size:0.8vh !important;
-        margin-top:1vh !important;
-
-    }
-
-     */
-            .name {
-                /* font-size:4vh !important; */
-
-            }
-
-            /* .uppernav i,span{
-        font-size:1.5vh !important;
-
-    }
-    .navbar-toggler{
-        font-size:2.5vh !important;
-        margin-top: 3vh !important;
-    } */
-        }
 
 
-        @media screen and (max-width: 768px) {
 
 
-            .footer .aside-stretch-right {
-                background: transparent;
-            }
-
-            .footer .aside-stretch-right:after {
-                background: transparent;
-                display: none;
-            }
-
-            .aside-stretch-right {
-                background: transparent;
-            }
-
-            .aside-stretch-right:after {
-                background: transparent;
-                display: none;
-            }
-
-            /* .name{
-font-size:3vh !important;
-margin-top: 3vh !important;
-} */
-
-        }
 
 
 
@@ -519,6 +498,17 @@ margin-top: 3vh !important;
             font-family: "Open Sans", sans-serif !important;
             -webkit-text-size-adjust: 100% !important;
         }
+
+        .navbar-nav a {
+
+            font-size: 1.9vh !important;
+
+        }
+
+        .productmenu {
+            /* font-size:40000vh !important; */
+            font-weight: 700 !important;
+        }
     </style>
 </head>
 
@@ -580,18 +570,18 @@ margin-top: 3vh !important;
                     <a href="product.html" class="nav-item nav-link" style="color: #234b91;">Products</a> --}}
                     <div class="nav-item dropdown">
                         <a href="#" style="color: #234b91;" class="nav-link dropdown-toggle linkname"
-                            data-bs-toggle="dropdown" id="products-dropdown">PRODUCTS CATEGORIES</a>
+                            data-bs-toggle="dropdown" id="products-dropdown">PRODUCTS</a>
                         <div class="dropdown-menu bg-light m-0 downname" id="products-dropdown-menu"
                             style="border: 3px solid #234b91;">
                             @foreach ($categories as $post)
                                 <a href="{{ route('categoryproducts', $post->id) }}"
-                                    style="color: #234b91;padding:0.5vh 5vh;"
-                                    class="dropdown-item">{{ $post->title }}</a>
+                                    style="color: #234b91;padding:1vh 1vh;"
+                                    class="dropdown-item productmenu">{{ $post->title }}</a>
                             @endforeach
                         </div>
                     </div>
-                    <a href="https://online.fliphtml5.com/doov/ooeo/" class="nav-item nav-link active linkname"
-                        style="color: #234b91;">OUR CATALOG</a>
+                    {{-- <a href="https://online.fliphtml5.com/doov/ooeo/" class="nav-item nav-link active linkname"
+                        style="color: #234b91;">OUR CATALOG</a> --}}
                     <a href="{{ route('index') }}" class="nav-item nav-link active linkname"
                         style="color: #234b91;">OUR BLOG</a>
                     <a href="{{ route('contactus') }}" class="nav-item nav-link active linkname"
@@ -601,14 +591,14 @@ margin-top: 3vh !important;
                             data-bs-toggle="dropdown" id="dropdown-menu-link">ABOUT</a>
                         <div class="dropdown-menu bg-light aboutpanel m-0 downname"
                             style="border: 3px solid #234b91;">
-                            <a href="gallery.html" style="color: #234b91;" class="dropdown-item px-3 py-2 ">Our
+                            <a href="gallery.html" style="color: #234b91;" class="dropdown-item px-1 py-2 ">Our
                                 Story</a>
-                            <a href="feature.html" style="color: #234b91;" class="dropdown-item px-3 py-2 ">press</a>
-                            <a href="team.html" style="color: #234b91;" class="dropdown-item px-3 py-2 ">FAQ</a>
-                            <a href="testimonial.html" style="color: #234b91;"
-                                class="dropdown-item px-3 py-2 ">Certificates</a>
+                            <a href="feature.html" style="color: #234b91;" class="dropdown-item px-1 py-2 ">Press</a>
+                            <a href="team.html" style="color: #234b91;" class="dropdown-item px-1 py-2 ">FAQ</a>
+                            <a href="https://online.fliphtml5.com/doov/ooeo/" style="color: #234b91;"
+                                class="dropdown-item px-1 py-2 ">Our Catalog</a>
                             <a href="{{ route('contactus') }}" style="color: #234b91;"
-                                class="dropdown-item px-3 py-2 ">Contact
+                                class="dropdown-item px-1 py-2 ">Contact
                                 Us</a>
                         </div>
                     </div>
@@ -616,6 +606,10 @@ margin-top: 3vh !important;
                 {{-- <div class="border-start ps-4 d-none d-lg-block">
                 <button type="button" class="btn btn-sm p-0"><i class="fa fa-search"></i></button>
             </div> --}}
+
+
+
+
             </div>
         </nav>
     </div>
@@ -735,7 +729,7 @@ margin-top: 3vh !important;
             wrap: false
         })
     </script>
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             const navbarToggler = document.getElementById("navbar-toggler");
             const navbarCollapse = document.getElementById("navbarCollapse");
@@ -757,7 +751,68 @@ margin-top: 3vh !important;
 
 
         });
+    </script> --}}
+    {{-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbarToggler = document.getElementById("navbar-toggler");
+            const navbarCollapse = document.getElementById("navbarCollapse");
+            const dropdownLinks = document.querySelectorAll(".nav-link.dropdown-toggle");
+            const productsDropdownMenu = document.getElementById("products-dropdown-menu");
+    
+            navbarToggler.addEventListener("click", function() {
+                navbarCollapse.classList.toggle("show");
+            });
+    
+            dropdownLinks.forEach(function(link) {
+                link.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const dropdownMenu = link.nextElementSibling;
+                    dropdownMenu.classList.toggle("show");
+                });
+            });
+    
+            document.addEventListener("mousedown", function(e) {
+                const isClickInsideMenu = navbarCollapse.contains(e.target);
+                if (!isClickInsideMenu) {
+                    // Clicked outside the menu, collapse it
+                    navbarCollapse.classList.remove("show");
+                }
+            });
+        });
+    </script> --}}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbarToggler = document.getElementById("navbar-toggler");
+            const navbarCollapse = document.getElementById("navbarCollapse");
+            const dropdownLinks = document.querySelectorAll(".nav-link.dropdown-toggle");
+            const productsDropdownMenu = document.getElementById("products-dropdown-menu");
+
+            navbarToggler.addEventListener("click", function() {
+                navbarCollapse.classList.toggle("show");
+            });
+
+            dropdownLinks.forEach(function(link) {
+                link.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const dropdownMenu = link.nextElementSibling;
+                    dropdownMenu.classList.toggle("show");
+                });
+            });
+
+            document.addEventListener("mousedown", function(e) {
+                const isClickInsideMenu = navbarCollapse.contains(e.target) || navbarToggler.contains(e
+                    .target);
+                if (!isClickInsideMenu) {
+                    // Clicked outside the menu and the button, collapse it
+                    navbarCollapse.classList.remove("show");
+                }
+            });
+        });
     </script>
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
