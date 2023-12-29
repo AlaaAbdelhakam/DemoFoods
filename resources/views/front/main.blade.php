@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Jawhara Website</title>
+    <title>Demo Foods</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -958,10 +958,10 @@ height: 100% !important; */
 
             <div class="section-title" style="width:100%;height:100%;justify-content:center;align-items:center;">
                 <h2 style="color: #234b91;">Portfolio</h2>
-                <h3>Check our <span style="color: #234b91;">Portfolio</span></h3>
-                <p style="color: #234b91;">Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci
-                    expedita at voluptas atque
-                    vitae autem.</p>
+                <h3>Check our <span style="color: #234b91;">Products</span></h3>
+                <p style="color: #234b91;">We are your source for responsibly and traditionally crafted olives and
+                    ingredients. Through the hands of our growers we create great tasting that nurture community and
+                    enhance your quality of life.</p>
             </div>
 
             <div class="row" data-aos="fade-up" data-aos-delay="100">
