@@ -31,8 +31,8 @@ Route::get('/singleproduct/{id}', [PostsController::class, 'index'])->name('sing
 Route::get('/categoryproduct/{id}', [PostsController::class, 'categoryproduct'])->name('categoryproducts');
 Route::get('/contact', [PostsController::class, 'contact'])->name('contactus');
 
-Route::get('songs/create', [SongsController::class, 'create'])->name('song.create');
-Route::post('songs', [SongsController::class, 'store'])->name('song.store');
+// Route::get('songs/create', [SongsController::class, 'create'])->name('song.create');
+// Route::post('songs', [SongsController::class, 'store'])->name('song.store');
 Route::group(['namespace' => 'App\Http\Controllers\admin','prefix' => 'admin'], function () {
 
     Route::get('/createMainPage', 'MainPageController@create')->name('createMainPage');
@@ -94,8 +94,8 @@ Route::group(['namespace' => 'App\Http\Controllers\admin','prefix' => 'admin'], 
 // Route::post('fullcalendar/update', [FullCalendarController::class, 'update']);
 // Route::post('fullcalendar/delete', [FullCalendarController::class, 'destroy']);
 Auth::routes(['register'=>false]);
-Route::get('calendar-event', [CalenderController::class, 'index']);
-Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
+// Route::get('calendar-event', [CalenderController::class, 'index']);
+// Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
 // Route::get('singleproduct', [HomeController::class, 'index'])->name('singleproduct');
 
 
@@ -108,11 +108,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
 
     Route::get('/', 'HomeControllerr@index')->name('welcome');
-    Route::post('/', 'EmailsController@store')->name('emails');
+    Route::post('/email', 'EmailsController@store')->name('emails');
     // Route::get('', 'HomeControllerr@');/
-    Route::get('/getevent', 'FullCalendarController@getEvent');
-Route::post('/createevent','FullCalendarController@createEvent');
-Route::post('/deleteevent','FullCalendarController@deleteEvent');
+//     Route::get('/getevent', 'FullCalendarController@getEvent');
+// Route::post('/createevent','FullCalendarController@createEvent');
+// Route::post('/deleteevent','FullCalendarController@deleteEvent');
     ####################################################### News
     Route::get('/index','front\ArticlesController@index')->name('index');
     Route::get('/article/{id}','front\ArticlesController@article')->name('article');
@@ -138,10 +138,10 @@ Route::post('/deleteevent','FullCalendarController@deleteEvent');
 
 
 
-        Route::group(['prefix' => 'posts'], function() {
-            // Route::get('/singleproduct/{id}', 'PostsController@index')->name('singleproduct');
-            // Route::get('/categoryproduct/{id}', 'PostsController@categoryproduct')->name('categoryproduct');
-            // Route::get('/contactus', 'PostsController@contact')->name('contactus');
+        // Route::group(['prefix' => 'posts'], function() {
+        //     // Route::get('/singleproduct/{id}', 'PostsController@index')->name('singleproduct');
+        //     // Route::get('/categoryproduct/{id}', 'PostsController@categoryproduct')->name('categoryproduct');
+        //     // Route::get('/contactus', 'PostsController@contact')->name('contactus');
 
 
 
@@ -153,12 +153,12 @@ Route::post('/deleteevent','FullCalendarController@deleteEvent');
 
 
 
-            Route::post('/create', 'PostsController@store')->name('posts.store');
-            Route::get('/{post}/show', 'PostsController@show')->name('posts.show');
-            Route::get('/{post}/edit', 'PostsController@edit')->name('posts.edit');
-            Route::patch('/{post}/update', 'PostsController@update')->name('posts.update');
-            Route::delete('/{post}/delete', 'PostsController@destroy')->name('posts.destroy');
-        });
+        //     Route::post('/create', 'PostsController@store')->name('posts.store');
+        //     Route::get('/{post}/show', 'PostsController@show')->name('posts.show');
+        //     Route::get('/{post}/edit', 'PostsController@edit')->name('posts.edit');
+        //     Route::patch('/{post}/update', 'PostsController@update')->name('posts.update');
+        //     Route::delete('/{post}/delete', 'PostsController@destroy')->name('posts.destroy');
+        // });
 
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);
@@ -207,21 +207,21 @@ Route::group([
 
 
 
-           Route::get('users/restore/one/{id}', 'UsersController@restore')->name('users.restore');
-           Route::get('users/restoreAll', 'UsersController@restoreAll')->name('users.restore.all');
-           Route::get('/task/destroy/{id}','UsersController@damage')->name('users.damage');
+        //    Route::get('users/restore/one/{id}', 'UsersController@restore')->name('users.restore');
+        //    Route::get('users/restoreAll', 'UsersController@restoreAll')->name('users.restore.all');
+        //    Route::get('/task/destroy/{id}','UsersController@damage')->name('users.damage');
 
 
 
         ################################## users routes ######################################
-        Route::group(['prefix' => 'users'], function () {
-            Route::get('/','UsersController@index') -> name('admin.users');
-            Route::get('create','UsersController@create') -> name('admin.users.create');
-            Route::post('store','UsersController@store') -> name('admin.users.store');
-            Route::get('/{user}/edit','UsersController@edit') -> name('admin.users.edit');
-            Route::post('update/{id}','UsersController@update') -> name('admin.users.update');
-            Route::get('delete/{id}','UsersController@destroy') -> name('admin.users.delete');
-        });
+        // Route::group(['prefix' => 'users'], function () {
+        //     Route::get('/','UsersController@index') -> name('admin.users');
+        //     Route::get('create','UsersController@create') -> name('admin.users.create');
+        //     Route::post('store','UsersController@store') -> name('admin.users.store');
+        //     Route::get('/{user}/edit','UsersController@edit') -> name('admin.users.edit');
+        //     Route::post('update/{id}','UsersController@update') -> name('admin.users.update');
+        //     Route::get('delete/{id}','UsersController@destroy') -> name('admin.users.delete');
+        // });
 
 
 
@@ -242,7 +242,7 @@ Route::group([
 
 
     // Route::get('/live_search',[App\Http\Controllers\LiveSearch::class, 'index'])->name('live_search');
-    Route::get('/live_search/action', [App\Http\Controllers\LiveSearch::class, 'action'])->name('live_search.action');
+    // Route::get('/live_search/action', [App\Http\Controllers\LiveSearch::class, 'action'])->name('live_search.action');
 
     Route::group(['namespace' => 'App\Http\Controllers\admin','prefix' => 'admin'], function () {
       ####################################################################################### News
@@ -281,7 +281,7 @@ Route::group([
     Route::group(['namespace' => 'App\Http\Controllers','prefix' => 'admin'], function () {
 
 
-           Route::get('/user/search', 'UserLiveSearch@search')->name('search.users');
+        //    Route::get('/user/search', 'UserLiveSearch@search')->name('search.users');
 
 
 

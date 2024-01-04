@@ -17,63 +17,69 @@ class SinglePlasticBarrelsPageContentController extends Controller
         return view('front.create_single_plastic_barrels_page_contents',compact('models'));
     }
 
+    public function insert(Request $request)
+    {
+        try {
+            // Check if there is an existing record with the specified jawharacproducts_id
+            $existingRecord = SinglePlasticBarrelsPageContent::where('jawharacproducts_id', $request->jawharacproducts_id)->first();
 
-public function insert(Request $request)
-{
-    try {
-        // Check if there is an existing record with the specified jawharacproducts_id
-        $existingRecord = SinglePlasticBarrelsPageContent::where('jawharacproducts_id', $request->jawharacproducts_id)->first();
+            if ($existingRecord) {
+                // Save paths of existing images before deletion
+                $img_PPfirstPath = $existingRecord->img_PBfirst;
+                $img_PPsecondPath = $existingRecord->img_PBsecond;
+                $img_PPthirdPath = $existingRecord->img_PBthird;
 
-        if ($existingRecord) {
-            // Save paths of existing images before deletion
-            $img_PBfirstPath = $existingRecord->img_PBfirst;
-            $img_PBsecondPath = $existingRecord->img_PBsecond;
-            $img_PBthirdPath = $existingRecord->img_PBthird;
+                // Delete the existing images and the old directory
+                if ($img_PPfirstPath && file_exists(public_path($img_PPfirstPath))) {
+                    unlink(public_path($img_PPfirstPath));
+                }
+                if ($img_PPsecondPath && file_exists(public_path($img_PPsecondPath))) {
+                    unlink(public_path($img_PPsecondPath));
+                }
+                if ($img_PPthirdPath && file_exists(public_path($img_PPthirdPath))) {
+                    unlink(public_path($img_PPthirdPath));
+                }
 
-            // Delete the existing record
-            $existingRecord->delete();
-
-            // Delete the existing images
-            if ($img_PBfirstPath) {
-                Storage::delete($img_PBfirstPath);
+                // Delete the old directory
+                $oldDirectoryPath = public_path('uploads/singleplasticbarrelspage/' . $existingRecord->id);
+                if (File::exists($oldDirectoryPath)) {
+                    File::deleteDirectory($oldDirectoryPath);
+                }
             }
-            if ($img_PBsecondPath) {
-                Storage::delete($img_PBsecondPath);
+
+            // Create a new directory for each product
+            $newDirectoryPath = 'uploads/singleplasticbarrelspage/' . ($existingRecord ? $existingRecord->id : now()->timestamp);
+
+            // Check if the directory exists, and create it if not in the public directory
+            $publicNewDirectoryPath = public_path($newDirectoryPath);
+            if (!File::exists($publicNewDirectoryPath)) {
+                File::makeDirectory($publicNewDirectoryPath, 0755, true, true);
             }
-            if ($img_PBthirdPath) {
-                Storage::delete($img_PBthirdPath);
+
+            $uploadedImages = [];
+
+            // Loop through all uploaded images
+            foreach ($request->allFiles() as $key => $file) {
+                $imageName = date('YmdHi') . $file->getClientOriginalName();
+                $filePath = $newDirectoryPath . '/' . $imageName;
+
+                // Store the image in the public directory
+                $file->move($publicNewDirectoryPath, $imageName);
+                $uploadedImages[$key] = $filePath;
             }
+
+            // Combine uploaded images and request data
+            $data = array_merge($request->except(['_token']), $uploadedImages);
+
+            // Create a new SinglePlasticPouchPageContent instance
+            SinglePlasticBarrelsPageContent::updateOrCreate($data);
+
+            return redirect()->back()->with('success', 'Data inserted successfully.');
+        } catch (\Exception $e) {
+            // Handle exceptions and display error
+            return back()->with('error', 'Error: ' . $e->getMessage())->withInput();
         }
-
-        $directoryPath = 'public/uploads/singleplasticbarrelspage';
-
-        // Check if the directory exists, and create it if not
-        if (!Storage::disk('local')->exists($directoryPath)) {
-            Storage::disk('local')->makeDirectory($directoryPath);
-        }
-
-        $uploadedImages = [];
-
-        // Loop through all uploaded images
-        foreach ($request->allFiles() as $key => $file) {
-            $imageName = date('YmdHi') . $file->getClientOriginalName();
-            $filePath = $directoryPath . '/' . $imageName;
-
-            // Store the image and add its path to the array
-            Storage::disk('local')->put($filePath, file_get_contents($file));
-            $uploadedImages[$key] = $filePath;
-        }
-
-        // Combine uploaded images and request data
-        $data = array_merge($request->except(['_token']), $uploadedImages);
-
-        // Create a new SinglePetJarPageContent instance
-        SinglePlasticBarrelsPageContent::updateOrCreate($data);
-
-        return redirect()->back()->with('success', 'Data inserted successfully.');
-    } catch (\Exception $e) {
-        // Handle exceptions and display error
-        return back()->with('error', 'Error: ' . $e->getMessage())->withInput();
     }
-}
+
+
 }

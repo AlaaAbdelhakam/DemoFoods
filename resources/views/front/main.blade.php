@@ -570,7 +570,7 @@ height: 100% !important; */
 
                     <!-- Slide 1 -->
                     <div class="carousel-item active"
-                        style="background-image: url({{ Storage::url($mainpage->first()->img_first) }});">
+                        style="background-image: url({{ asset($mainpage->first()->img_first) }});background-size: 100% 100%;">
                         <div class="carousel-container">
                             <div class="carousel-content">
                                 <h2 class="animate__animated animate__fadeInDown">
@@ -587,7 +587,7 @@ height: 100% !important; */
 
                     <!-- Slide 2 -->
                     <div class="carousel-item"
-                        style="background-image: url({{ Storage::url($mainpage->first()->img_second) }});">
+                        style="background-image: url({{ asset($mainpage->first()->img_second) }});background-size: 100% 100%;">
                         <div class="carousel-container">
                             <div class="carousel-content">
                                 <h2 class="animate__animated animate__fadeInDown">
@@ -605,7 +605,7 @@ height: 100% !important; */
 
                     <!-- Slide 3 -->
                     <div class="carousel-item"
-                        style="background-image: url({{ Storage::url($mainpage->first()->img_third) }});">
+                        style="background-image: url({{ asset($mainpage->first()->img_third) }});background-size: 100% 100%;">
                         <div class="carousel-container">
                             <div class="carousel-content">
                                 <h2 class="animate__animated animate__fadeInDown">
@@ -1052,7 +1052,8 @@ height: 100% !important; */
                 <div class="col-lg-2 col-md-6">
                     <h5 class="text-white mb-4">Quick Links</h5>
                     <a class="btn btn-link" href="" style="color: white;text-decoration:none;">About Us</a>
-                    <a class="btn btn-link" href="" style="color: white;text-decoration:none;">Contact Us</a>
+                    <a class="btn btn-link" href="{{ route('contactus') }}"
+                        style="color: white;text-decoration:none;">Contact Us</a>
                     <a class="btn btn-link" href="" style="color: white;text-decoration:none;">Our
                         Services</a>
                     <a class="btn btn-link" href="" style="color: white;text-decoration:none;">Terms &
